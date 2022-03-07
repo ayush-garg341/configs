@@ -22,15 +22,14 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'preservim/nerdtree'
     " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
-    " Plug 'arcticicestudio/nord-vim'
+    Plug 'arcticicestudio/nord-vim'
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'morhetz/gruvbox'
+    "Plug 'morhetz/gruvbox'
     Plug 'tpope/vim-surround'
     Plug 'airblade/vim-gitgutter'
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/completion-nvim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'psf/black', { 'branch': 'stable' }
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'ryanoasis/vim-devicons'
@@ -38,10 +37,31 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'preservim/nerdcommenter'
     Plug 'tmhedberg/SimpylFold'
-call plug#end()
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    "yaml folds 
+    Plug 'pedrohdz/vim-yaml-folds'
+
+    "git integration
+    Plug 'tpope/vim-fugitive'
+    Plug 'vim-airline/vim-airline'
+
+    "ale aysnc linting
+    Plug 'dense-analysis/ale'
+
+    " Remove un-used imports and variables
+    Plug 'tell-k/vim-autoflake'
+
+    call plug#end()
 
 
 " Other configuration
+
+let g:ale_linters = {'python': ['flake8 --max-line-length=120 --ignore=E128']} " 'flake8', 'pydocstyle', 'bandit', 'mypy'
+let g:ale_fixers = {'*': [], 'python': ['black']}
+let g:ale_fix_on_save = 1
+
+let python_highlight_all=1
+syntax on
 
 filetype plugin on
 filetype plugin indent on
@@ -62,6 +82,16 @@ set completeopt=menuone,noinsert,noselect
 set cmdheight=2
 set updatetime=50
 
+
+" config to remove all un-used imports and vars
+
+
+"autocmd BufWrite *.py call Autoflake()
+autocmd FileType python nmap <Leader>f :call Autoflake()<CR>
+let g:autoflake_remove_all_unused_imports=1
+let g:autoflake_remove_unused_variables=1
+let g:autoflake_disable_show_diff=1
+
 "
 " Disable Arrow keys
 noremap <Up> <Nop>
@@ -76,7 +106,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
-colorscheme gruvbox 
+"colorscheme gruvbox 
+colorscheme nord
 set termguicolors
 let mapleader=" "
 let NERDTreeShowHidden=1
@@ -84,6 +115,15 @@ nnoremap <Leader>m :NERDTreeToggle<cr>
 nmap <Leader>[ :bp!<cr>
 nmap <Leader>] :bn!<cr>
 nmap <Leader>x :bd<cr>
+
+nmap <Leader>gl :diffget //3<cr>
+nmap <Leader>gh :diffget //2<cr>
+nmap <Leader>gs :G<cr><c-w>T
+
+nmap <Leader>N :tabnew<cr>
+nmap <Leader>n :tabnext<cr>
+nmap <Leader>b :tabprevious<cr>
+
 
 
 nnoremap <F5> :buffers<CR>:buffer<Space>
@@ -142,8 +182,6 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Run black on saving python file.
-autocmd BufWritePre *.py execute ':Black'
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -237,6 +275,8 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+let g:airline#extensions#branch#enabled = 1
+
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()        
@@ -258,6 +298,8 @@ autocmd BufEnter * call SyncTree()
 " read the file as soon as it changes on the disk.
 set autoread
 
+au BufRead *.png,*.jpg,*.jpeg :call DisplayImage()
+
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -265,3 +307,16 @@ filetype plugin indent on
 
 " Enable folding with the spacebar
 nnoremap <space> za
+
+
+" Synatastic settings
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+"let g:syntastic_python_checkers = ['pylint']
