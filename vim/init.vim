@@ -22,7 +22,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'preservim/nerdtree'
     " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'arcticicestudio/nord-vim'
+    "Plug 'arcticicestudio/nord-vim'
+    Plug 'morhetz/gruvbox'
     Plug 'christoomey/vim-tmux-navigator'
     "Plug 'morhetz/gruvbox'
     Plug 'tpope/vim-surround'
@@ -56,7 +57,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
 " Other configuration
 
-let g:ale_linters = {'python': ['flake8 --max-line-length=120 --ignore=E128']} " 'flake8', 'pydocstyle', 'bandit', 'mypy'
+let g:ale_linters = {'python': ['flake8']} " 'flake8', 'pydocstyle', 'bandit', 'mypy'
 let g:ale_fixers = {'*': [], 'python': ['black']}
 let g:ale_fix_on_save = 1
 
@@ -106,8 +107,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
-"colorscheme gruvbox 
-colorscheme nord
+colorscheme gruvbox 
+"colorscheme nord
 set termguicolors
 let mapleader=" "
 let NERDTreeShowHidden=1
