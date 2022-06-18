@@ -57,8 +57,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
 " Other configuration
 
-let g:ale_linters = {'python': ['flake8']} " 'flake8', 'pydocstyle', 'bandit', 'mypy'
-let g:ale_fixers = {'*': [], 'python': ['black']}
+let g:ale_linters = {'python': ['flake8'], 'javascript': ['eslint']} " 'flake8', 'pydocstyle', 'bandit', 'mypy'
+let g:ale_fixers = {'*': [], 'python': ['black'], 'javascript': ['prettier', 'eslint']}
 let g:ale_fix_on_save = 1
 
 let python_highlight_all=1
