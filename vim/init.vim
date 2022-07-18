@@ -52,6 +52,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Remove un-used imports and variables
     Plug 'tell-k/vim-autoflake'
 
+    " fuzzy search in project/folder
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     call plug#end()
 
 
