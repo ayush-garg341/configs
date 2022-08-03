@@ -30,7 +30,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/completion-nvim'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release', 'tag': 'v0.0.81'}
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'ryanoasis/vim-devicons'
@@ -114,7 +114,7 @@ colorscheme gruvbox
 "colorscheme nord
 set termguicolors
 let mapleader=" "
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden=0
 nnoremap <Leader>m :NERDTreeToggle<cr>
 nmap <Leader>[ :bp!<cr>
 nmap <Leader>] :bn!<cr>
