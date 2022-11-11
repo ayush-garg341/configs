@@ -23,7 +23,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
     "Plug 'arcticicestudio/nord-vim'
-    Plug 'morhetz/gruvbox'
+    "Plug 'morhetz/gruvbox'
+    Plug 'mhartington/oceanic-next'
     Plug 'christoomey/vim-tmux-navigator'
     "Plug 'morhetz/gruvbox'
     Plug 'tpope/vim-surround'
@@ -55,21 +56,57 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " fuzzy search in project/folder
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+    " Vim plugin that makes it so easy to have tags.
+    Plug 'ludovicchabant/vim-gutentags'
+
+    " Vim plugin for working with python virtualenvs
+    Plug 'jmcantrell/vim-virtualenv'
+
+    " This plugin provides a start screen for Vim and Neovim.
+    Plug 'mhinz/vim-startify'
+
+    " Auto Complete for several languages
+    Plug 'Valloric/YouCompleteMe'
+
+    " Javascript specific pluging
+
+    " Another javascript syntax
+    Plug 'othree/yajs.vim'
+
+    " The React syntax highlighting and indenting plugin for vim. Also supports the typescript tsx file.
+    Plug 'maxmellon/vim-jsx-pretty'
+
+    " PHP Specific plugins
+    Plug 'StanAngeloff/php.vim'
+
+    " This one will automatically format your code whenever you want
+    Plug 'stephpy/vim-php-cs-fixer'
+
+    "Tools for refactoring and correctly formatting your code
+    Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+
+    " PHP Refactoring Toolbox for VIM
+    Plug 'adoy/vim-php-refactoring-toolbox'
+
     call plug#end()
 
 
 " Other configuration
 
-let g:ale_linters = {'python': ['flake8'], 'javascript': ['eslint']} " 'flake8', 'pydocstyle', 'bandit', 'mypy'
-let g:ale_fixers = {'*': [], 'python': ['black'], 'javascript': ['prettier', 'eslint']}
-let g:ale_fix_on_save = 1
-
-let python_highlight_all=1
-syntax on
-
 filetype plugin on
 filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+
+autocmd BufRead,BufNewFile *.py                     setfiletype python
+autocmd BufRead,BufNewFile *.php                    setfiletype php
+autocmd BufRead,BufNewFile *.js *.jsx               setfiletype javascript
+
+
+let g:gutentags_ctags_exclude = ['*.css', '*.html']
+let g:gutentags_cache_dir = '~/.config/nvim/gutentags'
+
+syntax on
+
 set incsearch ignorecase smartcase hlsearch
 set wildmode=longest,list,full wildmenu
 set ruler laststatus=2 showcmd showmode
@@ -86,18 +123,18 @@ set completeopt=menuone,noinsert,noselect
 set cmdheight=2
 set updatetime=50
 
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
 
-" config to remove all un-used imports and vars
 
-
-"autocmd BufWrite *.py call Autoflake()
-autocmd FileType python nmap <Leader>f :call Autoflake()<CR>
-let g:autoflake_remove_all_unused_imports=1
-let g:autoflake_remove_unused_variables=1
-let g:autoflake_disable_show_diff=1
-
+"map <silent> <leader>jd :CtrlPTag<cr><c-\>w
+nmap gd :ALEGoToDefinition<CR>
 "
-" Disable Arrow keys
+"
+"
+"" Disable Arrow keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -110,11 +147,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
-colorscheme gruvbox 
+colorscheme OceanicNext
 "colorscheme nord
 set termguicolors
 let mapleader=" "
-let NERDTreeShowHidden=0
+let NERDTreeShowHidden=1
 nnoremap <Leader>m :NERDTreeToggle<cr>
 nmap <Leader>[ :bp!<cr>
 nmap <Leader>] :bn!<cr>
@@ -165,10 +202,10 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -307,20 +344,8 @@ au BufRead *.png,*.jpg,*.jpeg :call DisplayImage()
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-filetype plugin indent on
+"filetype plugin indent on
 
 " Enable folding with the spacebar
 nnoremap <space> za
 
-
-" Synatastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-"let g:syntastic_python_checkers = ['pylint']
