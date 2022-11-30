@@ -1,0 +1,9 @@
+autoload -U colors && colors
+PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
+plugins=(rails git ruby zsh-autosuggestions web-search)
+ZSH_THEME="robbyrussell"
+export ZSH=~/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+
+PATH=/bin:/usr/bin:/usr/local/bin:/Users/elliott/.oh-my-zsh/plugins:/bin:/usr/bin:/usr/local/bin:/Users/elliott/.oh-my-zsh/plugins:/bin:/usr/bin:/usr/local/bin:/Users/elliott/.oh-my-zsh/plugins:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
