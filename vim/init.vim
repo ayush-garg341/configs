@@ -129,7 +129,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
 
 
 "map <silent> <leader>jd :CtrlPTag<cr><c-\>w
-nmap gd :ALEGoToDefinition<CR>
+nmap gd :YcmCompleter GoToDefinition<CR>
 "
 "
 "
