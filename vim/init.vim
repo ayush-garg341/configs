@@ -93,6 +93,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
 " Other configuration
 
+" Map caps lock to escape when enterin vim
+au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+" Back to normal i.e capslock mapping to capslock when leaving vim
+au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+
+
 filetype plugin on
 filetype plugin indent on
 
