@@ -42,6 +42,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "yaml folds 
     Plug 'pedrohdz/vim-yaml-folds'
 
+    "To see undo history
+    Plug 'mbbill/undotree'
+
     "git integration
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
@@ -171,6 +174,9 @@ nmap <Leader>N :tabnew<cr>
 nmap <Leader>n :tabnext<cr>
 nmap <Leader>b :tabprevious<cr>
 
+nmap <Leader>u :UndotreeToggle<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>p :buff#<CR>
 
 
 nnoremap <F5> :buffers<CR>:buffer<Space>
