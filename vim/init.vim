@@ -45,6 +45,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "To see undo history
     Plug 'mbbill/undotree'
 
+    "Language parser tool for better syntax highlighting, folds
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
     "git integration
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
