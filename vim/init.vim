@@ -74,6 +74,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Auto Complete for several languages
     Plug 'Valloric/YouCompleteMe'
 
+    " Go specific package
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+
     " Javascript specific pluging
 
     " Another javascript syntax
@@ -103,6 +107,7 @@ filetype plugin indent on
 autocmd BufRead,BufNewFile *.py                     setfiletype python
 autocmd BufRead,BufNewFile *.php                    setfiletype php
 autocmd BufRead,BufNewFile *.js *.jsx               setfiletype javascript
+autocmd BufRead,BufNewFile *.go                     setfiletype go
 
 
 let g:gutentags_ctags_exclude = ['*.css', '*.html']
