@@ -81,29 +81,20 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " The React syntax highlighting and indenting plugin for vim. Also supports the typescript tsx file.
     Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'pangloss/vim-javascript'
+    Plug 'leafgarland/typescript-vim'
 
-    " PHP Specific plugins
-    Plug 'StanAngeloff/php.vim'
-
-    " This one will automatically format your code whenever you want
-    Plug 'stephpy/vim-php-cs-fixer'
-
-    "Tools for refactoring and correctly formatting your code
-    Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
-
-    " PHP Refactoring Toolbox for VIM
-    Plug 'adoy/vim-php-refactoring-toolbox'
 
     call plug#end()
 
 
 " Other configuration
 
-" Map caps lock to escape when enterin vim
-au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+"" Map caps lock to escape when enterin vim
+"au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
-" Back to normal i.e capslock mapping to capslock when leaving vim
-au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+"" Back to normal i.e capslock mapping to capslock when leaving vim
+"au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 
 filetype plugin on
@@ -226,4 +217,3 @@ set foldlevel=99
 
 " Enable folding with the spacebar
 nnoremap <space> za
-
