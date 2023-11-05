@@ -38,7 +38,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'preservim/nerdcommenter'
     Plug 'tmhedberg/SimpylFold'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
     "yaml folds 
     Plug 'pedrohdz/vim-yaml-folds'
 
@@ -92,15 +92,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     call plug#end()
 
 
-" Other configuration
-
-"" Map caps lock to escape when enterin vim
-"au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
-"" Back to normal i.e capslock mapping to capslock when leaving vim
-"au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
-
-
 filetype plugin on
 filetype plugin indent on
 
@@ -109,9 +100,6 @@ autocmd BufRead,BufNewFile *.php                    setfiletype php
 autocmd BufRead,BufNewFile *.js *.jsx               setfiletype javascript
 autocmd BufRead,BufNewFile *.go                     setfiletype go
 
-
-let g:gutentags_ctags_exclude = ['*.css', '*.html']
-let g:gutentags_cache_dir = '~/.config/nvim/gutentags'
 
 syntax on
 
@@ -222,3 +210,4 @@ set foldlevel=99
 
 " Enable folding with the spacebar
 nnoremap <space> za
+
