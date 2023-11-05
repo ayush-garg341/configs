@@ -1,0 +1,17 @@
+- Common errors face while installing YCM with vim
+    - Default installed vim not compiled with python3 support.
+    - Solution
+        - brew install vim
+    - Now this vim is compiled with python3 support, but we have to replace or create an alias for it.
+        - Alias vim to this new vim location.
+        - ex: **alias vim='/opt/homebrew/Cellar/vim/9.0.2050/bin/vim'**
+    - Once we have **ycm** package inside ~/.config/nvim/autoload/plugged/
+        - cd into that directory
+        - brew install make cmake go nodejs java
+        - Now if we run install.py script with default python that comes pre-installed, we will get another issue of **headers missing**.
+        - The solution of above problem is, use new python binary which got installed when we installed vim using brew.
+        - To check default location of python -> which python3
+        - For brew installed python, check the location of binary, in my case **/opt/homebrew/bin/python3.12 install.py --all** inside ycm folder.
+        - Still when we open python, go files using nvim we don;t get autocomplete.
+            - To fix this issue :- **pip3 install pynvim** in global python and virtual python folder.
+
