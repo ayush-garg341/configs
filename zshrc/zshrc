@@ -7,3 +7,4 @@ source $ZSH/oh-my-zsh.sh
 
 
 PATH=/bin:/usr/bin:/usr/local/bin:/Users/elliott/.oh-my-zsh/plugins:/bin:/usr/bin:/usr/local/bin:/Users/elliott/.oh-my-zsh/plugins:/bin:/usr/bin:/usr/local/bin:/Users/elliott/.oh-my-zsh/plugins:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
+PROMPT='%{$fg[yellow]%}[%D{%f/%m/%y} %D{%L:%M:%S}] '$PROMPT
