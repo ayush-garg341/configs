@@ -5,7 +5,7 @@
 " Version: 0.1
 """
 """
- 
+
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -39,7 +39,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'tmhedberg/SimpylFold'
     Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
-    "yaml folds 
+    "yaml folds
     Plug 'pedrohdz/vim-yaml-folds'
 
     "To see undo history
@@ -87,6 +87,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'pangloss/vim-javascript'
     Plug 'leafgarland/typescript-vim'
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+    Plug 'mattn/emmet-vim'
 
 
     call plug#end()
@@ -180,9 +182,13 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 let g:airline#extensions#branch#enabled = 1
 
+" Enable just for html/css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
+function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
@@ -210,4 +216,3 @@ set foldlevel=99
 
 " Enable folding with the spacebar
 nnoremap <space> za
-
