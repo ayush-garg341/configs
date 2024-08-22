@@ -91,6 +91,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'mattn/emmet-vim'
 
 
+    " C code formatter plugin
+    Plug 'cacharle/c_formatter_42.vim'
+
     call plug#end()
 
 
@@ -181,6 +184,7 @@ endfunction
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let g:airline#extensions#branch#enabled = 1
+let g:c_formatter_42_format_on_save = 1
 
 " Enable just for html/css
 let g:user_emmet_install_global = 0
